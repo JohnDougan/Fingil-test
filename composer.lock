@@ -1,0 +1,65 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "5300ab5fb7a6673bfdd2994c4a7a1369",
+    "packages": [
+        {
+            "name": "flankerspb/curl",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/flankerspb/curl.git",
+                "reference": "4f693eabb2d711b7488cd73004ed29da8c842c87"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/flankerspb/curl/zipball/4f693eabb2d711b7488cd73004ed29da8c842c87",
+                "reference": "4f693eabb2d711b7488cd73004ed29da8c842c87",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=7.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "fl\\curl\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Vitaliy Moskalyuk",
+                    "email": "flanker@bk.ru"
+                }
+            ],
+            "description": "Simple cURL wrapper",
+            "homepage": "https://github.com/flankerspb/curl",
+            "keywords": [
+                "curl"
+            ],
+            "support": {
+                "issues": "https://github.com/flankerspb/curl/issues",
+                "source": "https://github.com/flankerspb/curl/tree/1.0.2"
+            },
+            "time": "2022-10-31T13:34:41+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
+}
