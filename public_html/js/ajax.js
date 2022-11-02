@@ -6,8 +6,8 @@ function requestSuccess(data) {
             if(val.state == 'Новый') tr.addClass('text-bg-success');
             else if(val.state == 'Закрытый') tr.addClass('text-bg-danger');
             else tr.addClass('text-bg-info');
-            var tdId = $('<td></td>').append(val.id);
-            var tdState = $('<td></td>').append(val.state);
+            let tdId = $('<td></td>').append(val.id);
+            let tdState = $('<td></td>').append(val.state);
             let tdNumber = $('<td></td>').append(val.number);
             let tdCreate = $('<td></td>').append(val.createDate);
             let tdExpire = $('<td></td>').append(val.expireDate);

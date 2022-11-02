@@ -79,18 +79,17 @@ class Validator
         if (preg_match("#^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$#", $data)) {
             $data = explode("-", $data);
             $data = mktime(0, 0, 0, $data[1], $data[2], $data[0]);
-            $data = date('Y-m-d', $data);
-            return $data;
+            return date('Y-m-d', $data);
         }
         return false;
     }
 
-    private function prepareMethodName($name)
+    private function prepareMethodName($name):string
     {
         return 'validate' . ucfirst(str_replace('-', '_', $name));
     }
 
-    public function getStates()
+    public function getStates():array
     {
         return $this->states;
     }
