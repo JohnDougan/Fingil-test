@@ -1,9 +1,6 @@
 <?php
 
-ini_set('display_errors', 'On');
-
 $al = require_once __DIR__ . '/../../vendor/autoload.php';
-
 
 // Это небольшой класс для проверки введенных фильтров. Потому что запрос приходит из аякса, а это, априори, территория врага - юзера)
 $validator = new \app\Validator();
