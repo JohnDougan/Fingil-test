@@ -1,5 +1,12 @@
 <?php
 
+// Этот небольшой ребус из-за настроек моего хостинга. Подключаю файл аякса здесь, иначе сервер редиректит запрос
+// с https на http и, соответственно, ничего не работает
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    require_once (__DIR__ . '/ajax/index.php');
+    die();
+}
+
 $title  = 'Тест для php-разработчиков';
 $author = 'Fingli Group';
 $date   = '2022';
@@ -16,8 +23,7 @@ $date   = '2022';
 	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 	<meta name="robots" content="noindex"/>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"
-	>
+		  integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body class="d-flex flex-column h-100 bg-light">
 <main class="flex-shrink-0">
@@ -29,13 +35,50 @@ $date   = '2022';
 		<section class="card my-4">
 			<h2 class="card-header">Поиск деклараций</h2>
 			<div class="card-body">
-				<form id="form-filter">
-					<div class="mb-3">
-						<label class="form-label" for="state">Статус</label>
-						<select class="form-select" id="state" name="state" required>
-							<option value="">- любой -</option>
-						</select>
-					</div>
+				<form id="form-filter" action="/ajax" method="post">
+                    <div class="mb-3">
+                        <label class="form-label" for="state">Статус</label>
+                        <select class="form-select" id="state" name="state" required>
+                            <option value="any">Все</option>
+                            <option value="new">Новые</option>
+                            <option value="open">Открытые</option>
+                            <option value="close">Закрытые</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="number">Номер декларации</label>
+                        <input type="number" class="form-control" id="number" name="number">
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="form-label" for="create-date-begin">Дата регистрации</label>
+                        <div class="input-group col">
+                            <span class="input-group-text" id="create-date-begin-label">от</span>
+                            <input type="date" id="create-date-begin" name="create-date-begin" class="form-control" aria-describedby="create-date-begin-label">
+                        </div>
+                        <div class="input-group col">
+                            <span class="input-group-text" id="create-date-end-label">до</span>
+                            <input type="date" id="create-date-end" name="create-date-end" class="form-control" aria-describedby="create-date-end-label">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="form-label" for="state">Дата окончания действия</label>
+                        <div class="input-group col">
+                            <span class="input-group-text" id="expire-date-begin-label">от</span>
+                            <input type="date" id="expire-date-begin" name="expire-date-begin" class="form-control" aria-describedby="expire-date-begin-label">
+                        </div>
+                        <div class="input-group col">
+                            <span class="input-group-text" id="create-date-end-label">до</span>
+                            <input type="date" id="expire-date-end" name="expire-date-end" class="form-control" aria-describedby="expire-date-end-label">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="count">Количество деклараций</label>
+                        <select class="form-select" id="count" name="count" required>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
 					<div>
 						<button class="btn btn-primary" type="submit">Найти</button>
 					</div>
@@ -61,7 +104,7 @@ $date   = '2022';
 							<th data-field="objectType">Тип объекта декларирования</th>
 						</tr>
 						</thead>
-						<tbody>
+						<tbody id="result-table">
 						</tbody>
 					</table>
 				</div>
@@ -74,6 +117,10 @@ $date   = '2022';
 		<span class="text-muted"><?= "$date. $author" ?></span>
 	</div>
 </footer>
+<script
+        src="https://code.jquery.com/jquery-3.3.0.min.js"
+        integrity="sha256-RTQy8VOmNlT6b2PIRur37p6JEBZUE7o8wPgMvu18MC4="
+        crossorigin="anonymous"></script>
 <script src="/js/ajax.js"></script>
 </body>
 </html>
